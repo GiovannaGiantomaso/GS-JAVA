@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Tipo de Ajuda</title>
+    <title th:text="#{ajuda.title}">Cadastro de Tipo de Ajuda</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,6 +40,9 @@
             padding: 12px 16px;
             margin-bottom: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         li strong {
@@ -108,34 +111,92 @@
         .btn-voltar:hover {
             background-color: #a4a4a4;
         }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .language-switcher a {
+            font-size: 24px;
+            margin-left: 12px;
+            color: #4b7748;
+            text-decoration: none;
+            transition: transform 0.2s ease, color 0.3s ease;
+        }
+
+        .btn-excluir {
+            background-color: #e57373;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-excluir:hover {
+            background-color: #d95454;
+        }
+
+        .btn-editar {
+            background-color: #4b7748;
+            padding: 6px 12px;
+            border-radius: 6px;
+            color: white;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .btn-editar:hover {
+            background-color: #3c613a;
+        }
     </style>
 </head>
 <body>
+<div class="language-switcher">
+    <a href="?lang=pt_BR" title="Português">🇧🇷</a>
+    <a href="?lang=en" title="English">🇺🇸</a>
+    <a href="?lang=es" title="Español">🇪🇸</a>
+</div>
+
 <div class="container">
-    <h2>Tipos de Ajuda Cadastrados</h2>
+    <h2 th:text="#{ajuda.list.title}">Tipos de Ajuda Cadastrados</h2>
+
+    <div th:if="${param.sucesso}" class="mensagem-sucesso" th:text="#{ajuda.success}">Tipo de ajuda cadastrado com sucesso!</div>
+    <div th:if="${param.excluido}" class="mensagem-sucesso" th:text="#{ajuda.deleted}">Tipo de ajuda excluído com sucesso!</div>
+    <div th:if="${param.atualizado}" class="mensagem-sucesso" th:text="#{ajuda.updated}">Tipo de ajuda atualizado com sucesso!</div>
+
     <ul>
         <li th:each="tipo : ${tiposAjuda}">
-            <strong th:text="${tipo.nome}"></strong>: <span th:text="${tipo.descricao}"></span>
+            <div>
+                <strong th:text="${tipo.nome}">Nome</strong>: <span th:text="${tipo.descricao}">Descrição</span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <a th:href="@{'/tipos-ajuda/' + ${tipo.id} + '/editar'}" class="btn-editar" th:text="#{ajuda.edit.button}">Editar</a>
+                <form th:action="@{'/tipos-ajuda/' + ${tipo.id} + '/excluir'}" method="post" style="margin: 0;">
+                    <button type="submit" class="btn-excluir" th:text="#{ajuda.delete.button}">Excluir</button>
+                </form>
+            </div>
         </li>
     </ul>
 
-    <h2>Cadastrar Novo Tipo de Ajuda</h2>
+    <h2 th:text="${editando} ? #{ajuda.form.editTitle} : #{ajuda.form.title}">Formulário</h2>
 
-    <div th:if="${param.sucesso}" class="mensagem-sucesso">
-        Tipo de ajuda cadastrado com sucesso!
-    </div>
-
-    <form th:action="@{/tipos-ajuda}" method="post" th:object="${novoTipo}">
-        <label for="nome">Nome:</label>
+    <form th:action="${editando} ? @{'/tipos-ajuda/' + ${novoTipo.id} + '/atualizar'} : @{/tipos-ajuda}"
+          method="post" th:object="${novoTipo}">
+        <label for="nome" th:text="#{ajuda.form.name}">Nome:</label>
         <input id="nome" type="text" th:field="*{nome}" required />
 
-        <label for="descricao">Descrição:</label>
+        <label for="descricao" th:text="#{ajuda.form.description}">Descrição:</label>
         <textarea id="descricao" th:field="*{descricao}" rows="3" required></textarea>
 
-        <button type="submit">Cadastrar Tipo de Ajuda</button>
+        <button type="submit"
+                th:text="${editando} ? #{ajuda.form.updateButton} : #{ajuda.form.button}">Salvar</button>
     </form>
 
-    <a href="/principal" class="btn-voltar">Voltar para a página principal</a>
+    <a href="/principal" class="btn-voltar" th:text="#{ajuda.form.back}">Voltar para a página principal</a>
 </div>
 </body>
 </html>

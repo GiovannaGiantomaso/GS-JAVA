@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Solicitação de Ajuda</title>
+    <title th:text="#{pedido.title}">Solicitação de Ajuda</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -72,40 +72,58 @@
             border-radius: 6px;
             text-align: center;
         }
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
 
+        .language-switcher a {
+            font-size: 24px;
+            margin-left: 12px;
+            color: #4b7748;
+            text-decoration: none;
+            transition: transform 0.2s ease, color 0.3s ease;
+        }
         .btn-voltar:hover {
             background-color: #666;
         }
     </style>
 </head>
 <body>
+<div class="language-switcher">
+    <a href="?lang=pt_BR" title="Português">🇧🇷</a>
+    <a href="?lang=en" title="English">🇺🇸</a>
+    <a href="?lang=es" title="Español">🇪🇸</a>
+</div>
+
 <div class="container">
-    <h2>Solicitar Ajuda</h2>
+    <h2 th:text="#{pedido.title}">Solicitar Ajuda</h2>
 
     <form th:action="@{/pedidos/salvar}" method="post" th:object="${pedidoAjuda}">
-        <label>Tipo de Ajuda:</label>
+        <label th:text="#{pedido.tipoAjuda}">Tipo de Ajuda:</label>
         <select th:field="*{tipoAjuda.id}" required>
-            <option value="" disabled selected>Selecione...</option>
+            <option value="" disabled selected th:text="#{pedido.selecione}">Selecione...</option>
             <option th:each="tipo : ${tiposAjuda}" th:value="${tipo.id}" th:text="${tipo.nome}"></option>
         </select>
 
-        <label>Crianças no Local?</label>
+        <label th:text="#{pedido.criancas}">Crianças no Local?</label>
         <select th:field="*{criancasNoLocal}" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option value="S">Sim</option>
-            <option value="N">Não</option>
+            <option value="" disabled selected th:text="#{pedido.selecione}">Selecione...</option>
+            <option value="S" th:text="#{pedido.sim}">Sim</option>
+            <option value="N" th:text="#{pedido.nao}">Não</option>
         </select>
 
-        <label>Número de Pessoas no Local:</label>
+        <label th:text="#{pedido.pessoas}">Número de Pessoas no Local:</label>
         <input type="number" th:field="*{pessoasNoLocal}" required />
 
-        <label>Situação de Risco:</label>
+        <label th:text="#{pedido.situacao}">Situação de Risco:</label>
         <textarea th:field="*{situacaoDeRisco}" rows="3" required></textarea>
 
-        <button type="submit">Enviar Pedido</button>
+        <button type="submit" th:text="#{pedido.enviar}">Enviar Pedido</button>
     </form>
 
-    <a href="/principal" class="btn-voltar">Voltar para a Página Principal</a>
+    <a href="/principal" class="btn-voltar" th:text="#{pedido.voltar}">Voltar para a Página Principal</a>
 </div>
 </body>
 </html>

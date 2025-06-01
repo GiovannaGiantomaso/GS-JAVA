@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Pedidos de Ajuda</title>
+    <title th:text="#{pedidos.title}">Pedidos de Ajuda</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -51,7 +51,19 @@
             text-decoration: none;
             font-weight: bold;
         }
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
 
+        .language-switcher a {
+            font-size: 24px;
+            margin-left: 12px;
+            color: #4b7748;
+            text-decoration: none;
+            transition: transform 0.2s ease, color 0.3s ease;
+        }
         .btn-voltar:hover {
             background-color: #666;
         }
@@ -59,18 +71,24 @@
 </head>
 <body>
 
-<h2>Pedidos de Ajuda Registrados</h2>
+<div class="language-switcher">
+    <a href="?lang=pt_BR" title="Português">🇧🇷</a>
+    <a href="?lang=en" title="English">🇺🇸</a>
+    <a href="?lang=es" title="Español">🇪🇸</a>
+</div>
+
+<h2 th:text="#{pedidos.title2}">Pedidos de Ajuda Registrados</h2>
 
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>Tipo de Ajuda</th>
-        <th>Endereço</th>
-        <th>Crianças no Local</th>
-        <th>Pessoas</th>
-        <th>Situação de Risco</th>
-        <th>Data</th>
+        <th th:text="#{pedidos.tipoAjuda}">Tipo de Ajuda</th>
+        <th th:text="#{pedidos.endereco}">Endereço</th>
+        <th th:text="#{pedidos.criancas}">Crianças no Local</th>
+        <th th:text="#{pedidos.pessoas}">Pessoas</th>
+        <th th:text="#{pedidos.situacao}">Situação de Risco</th>
+        <th th:text="#{pedidos.data}">Data</th>
     </tr>
     </thead>
     <tbody>
@@ -86,9 +104,12 @@
                            pedido.perfilUsuario.endereco.estado}">
             Endereço completo
             </span>
-            <span th:unless="${pedido.perfilUsuario.endereco != null}">Endereço não informado</span>
+            <span th:unless="${pedido.perfilUsuario.endereco != null}" th:text="#{pedidos.semEndereco}">
+                Endereço não informado
+            </span>
         </td>
-        <td th:text="${pedido.criancasNoLocal == 'S' ? 'Sim' : 'Não'}">Sim</td>
+        <td th:if="${pedido.criancasNoLocal == 'S'}" th:text="#{pedidos.sim}">Sim</td>
+        <td th:unless="${pedido.criancasNoLocal == 'S'}" th:text="#{pedidos.nao}">Não</td>
         <td th:text="${pedido.pessoasNoLocal}">4</td>
         <td th:text="${pedido.situacaoDeRisco}">Descrição</td>
         <td th:text="${#dates.format(pedido.dataCriacao, 'dd/MM/yyyy HH:mm')}">Data</td>
@@ -96,7 +117,7 @@
     </tbody>
 </table>
 
-<a href="/principal" class="btn-voltar">Voltar para a Página Principal</a>
+<a href="/principal" class="btn-voltar" th:text="#{pedidos.voltar}">Voltar para a Página Principal</a>
 
 </body>
 </html>

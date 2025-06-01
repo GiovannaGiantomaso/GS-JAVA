@@ -50,9 +50,10 @@ public class PedidoAjudaController {
 
     @GetMapping
     public String listarPedidos(Model model) {
-        List<PedidoAjuda> pedidos = pedidoRepo.findAll();
+        List<PedidoAjuda> pedidos = pedidoAjudaService.listarTodosPedidosOrdenadosPorId();
         model.addAttribute("pedidos", pedidos);
         return "pedidos/lista";
     }
+
 }
 

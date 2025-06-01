@@ -4,6 +4,7 @@ import br.fiap.ajuda.model.TipoAjuda;
 import br.fiap.ajuda.repository.TipoAjudaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -13,8 +14,9 @@ public class TipoAjudaService {
 
     private final TipoAjudaRepository repository;
 
+
     public List<TipoAjuda> listarTodos() {
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     public TipoAjuda buscarPorId(Long id) {
@@ -23,4 +25,8 @@ public class TipoAjudaService {
     public TipoAjuda salvar(TipoAjuda tipoAjuda) {
         return repository.save(tipoAjuda);
     }
+    public void excluirPorId(Long id) {
+        repository.deleteById(id);
+    }
+
 }
