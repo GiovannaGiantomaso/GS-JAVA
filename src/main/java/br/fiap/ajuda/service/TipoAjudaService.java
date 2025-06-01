@@ -1,0 +1,23 @@
+package br.fiap.ajuda.service;
+
+import br.fiap.ajuda.model.TipoAjuda;
+import br.fiap.ajuda.repository.TipoAjudaRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class TipoAjudaService {
+
+    private final TipoAjudaRepository repository;
+
+    public List<TipoAjuda> listarTodos() {
+        return repository.findAll();
+    }
+
+    public TipoAjuda buscarPorId(Long id) {
+        return repository.findById(id).orElseThrow();
+    }
+}

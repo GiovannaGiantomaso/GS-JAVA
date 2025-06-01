@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Perfil - Sistema de Ajuda Comunitária</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f8f5;
+            color: #2d3e30;
+            margin: 0;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #e8f0ea;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            color: #4b7748;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .alerta-sucesso {
+            background-color: #d0f1cc;
+            color: #2f4e2c;
+            padding: 14px 24px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #3e5242;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #c1d8c3;
+            border-radius: 6px;
+            font-size: 15px;
+            background-color: #ffffff;
+        }
+
+        .botoes {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        button, .botao-voltar {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #8fbf87;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover,
+        .botao-voltar:hover {
+            background-color: #7da878;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Complete seu Perfil</h2>
+
+    <div th:if="${param.sucesso}" class="alerta-sucesso">
+        Perfil atualizado com sucesso!
+    </div>
+
+    <form th:action="@{/usuarios/salvar}" th:object="${perfilUsuario}" method="post">
+        <label>Nome:</label>
+        <input type="text" th:field="*{nome}" required />
+
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required />
+
+        <label>Telefone:</label>
+        <input type="text" th:field="*{telefone}" />
+
+        <label>Data de Nascimento:</label>
+        <input type="date" th:field="*{dataNascimento}" required />
+
+        <label>Logradouro:</label>
+        <input type="text" th:field="*{logradouro}" required />
+
+        <label>Número:</label>
+        <input type="text" th:field="*{numero}" required />
+
+        <label>Bairro:</label>
+        <input type="text" th:field="*{bairro}" required />
+
+        <label>Cidade:</label>
+        <input type="text" th:field="*{cidade}" required />
+
+        <label>Estado:</label>
+        <input type="text" th:field="*{estado}" required />
+
+        <label>CEP:</label>
+        <input type="text" th:field="*{cep}" required />
+
+        <div class="botoes">
+            <button type="submit">Salvar Perfil</button>
+            <a th:href="@{/principal}" class="botao-voltar">Voltar</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

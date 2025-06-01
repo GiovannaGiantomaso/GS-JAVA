@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Resposta da IA</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: #f4f8f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2d3e30;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #4b7748;
+            margin-bottom: 24px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .box {
+            background-color: #e8f0ea;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 12px 0;
+        }
+
+        strong {
+            color: #4b7748;
+        }
+
+        .botoes {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        a.button {
+            background-color: #8fbf87;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #7da878;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Resposta da IA</h1>
+
+<div class="box">
+    <p><strong>Pergunta:</strong> <span th:text="${pergunta}"></span></p>
+    <p><strong>Resposta:</strong> <span th:text="${resposta}"></span></p>
+</div>
+
+<div class="botoes">
+    <a th:href="@{/ai/form}" class="button">Fazer outra pergunta</a>
+    <a th:href="@{/principal}" class="button">Voltar para a Página Principal</a>
+</div>
+
+</body>
+</html>

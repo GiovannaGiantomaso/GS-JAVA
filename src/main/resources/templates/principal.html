@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Ajuda Comunitária</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f8f5;
+            color: #2d3e30;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #4b7748; /* verde médio */
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #3e5242;
+        }
+
+        .painel {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: #e8f0ea;
+            border-radius: 12px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card h3 {
+            color: #4b7748;
+            font-size: 20px;
+        }
+
+        .card p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .card a, .card button {
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #8fbf87;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card a:hover,
+        .card button:hover {
+            background-color: #7da878;
+        }
+
+        .logout {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .logout button {
+            background-color: #c94f4f;
+            color: white;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .logout button:hover {
+            background-color: #a63a3a;
+        }
+
+        .alert-sucesso {
+            background-color: #d0f1cc;
+            color: #2f4e2c;
+            padding: 14px 24px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 15px;
+            max-width: 500px;
+            margin: 20px auto;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Alerta de sucesso -->
+<div th:if="${param.sucesso}" class="alert-sucesso">
+    Perfil atualizado com sucesso!
+</div>
+
+<header>
+    <h1>Bem-vindo ao Sistema de Ajuda Comunitária</h1>
+    <p>Plataforma de suporte para pessoas em situação de risco</p>
+</header>
+
+<section class="painel">
+    <div class="card">
+        <h3>Fazer um novo pedido</h3>
+        <p>Solicite ajuda para você ou outra pessoa</p>
+        <a th:href="@{/pedidos/novo}">Novo Pedido</a>
+    </div>
+    <div class="card">
+        <h3>Listar pedidos</h3>
+        <p>Visualize os pedidos de ajuda da comunidade</p>
+        <a th:href="@{/pedidos}">Ver Pedidos</a>
+    </div>
+    <div class="card">
+        <h3>Completar perfil</h3>
+        <p>Informe seu endereço e dados de contato</p>
+        <a th:href="@{/usuarios/perfil}">
+            <button>Atualizar Perfil</button>
+        </a>
+    </div>
+    <div class="card">
+        <h3>IA Solidária</h3>
+        <p>Converse com a IA sobre riscos, dúvidas ou orientações</p>
+        <a th:href="@{/ai/form}">Acessar IA</a>
+    </div>
+</section>
+
+<div class="logout">
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Sair</button>
+    </form>
+</div>
+
+</body>
+</html>
