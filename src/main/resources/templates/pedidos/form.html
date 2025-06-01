@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitação de Ajuda</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f8f5;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4b7748;
+            margin-bottom: 25px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #3e5242;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #c1d8c3;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: #fff;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #8fbf87;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #7da878;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #888;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .btn-voltar:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Solicitar Ajuda</h2>
+
+    <form th:action="@{/pedidos/salvar}" method="post" th:object="${pedidoAjuda}">
+        <label>Tipo de Ajuda:</label>
+        <select th:field="*{tipoAjuda.id}" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option th:each="tipo : ${tiposAjuda}" th:value="${tipo.id}" th:text="${tipo.nome}"></option>
+        </select>
+
+        <label>Crianças no Local?</label>
+        <select th:field="*{criancasNoLocal}" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option value="S">Sim</option>
+            <option value="N">Não</option>
+        </select>
+
+        <label>Número de Pessoas no Local:</label>
+        <input type="number" th:field="*{pessoasNoLocal}" required />
+
+        <label>Situação de Risco:</label>
+        <textarea th:field="*{situacaoDeRisco}" rows="3" required></textarea>
+
+        <button type="submit">Enviar Pedido</button>
+    </form>
+
+    <a href="/principal" class="btn-voltar">Voltar para a Página Principal</a>
+</div>
+</body>
+</html>

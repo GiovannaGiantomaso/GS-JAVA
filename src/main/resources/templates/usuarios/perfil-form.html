@@ -97,7 +97,8 @@
         Perfil atualizado com sucesso!
     </div>
 
-    <form th:action="@{/usuarios/salvar}" th:object="${perfilUsuario}" method="post">
+    <form th:action="@{/usuarios/perfil}" th:object="${perfilUsuario}" method="post">
+
         <label>Nome:</label>
         <input type="text" th:field="*{nome}" required />
 
@@ -110,6 +111,7 @@
         <label>Data de Nascimento:</label>
         <input type="date" th:field="*{dataNascimento}" required />
 
+        <!-- Endereço (campos diretos do DTO) -->
         <label>Logradouro:</label>
         <input type="text" th:field="*{logradouro}" required />
 

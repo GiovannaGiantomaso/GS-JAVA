@@ -8,9 +8,7 @@ import br.fiap.ajuda.repository.PerfilUsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +22,6 @@ public class PerfilUsuarioService {
         perfil.setNome(dto.getNome());
         perfil.setEmail(dto.getEmail());
         perfil.setTelefone(dto.getTelefone());
-
-        // Usa diretamente o LocalDate
         perfil.setDataNascimento(dto.getDataNascimento());
 
         perfil = perfilRepo.save(perfil);
@@ -44,5 +40,11 @@ public class PerfilUsuarioService {
         return perfil;
     }
 
+    public Optional<PerfilUsuario> buscarPorEmail(String email) {
+        return perfilRepo.findByEmail(email);
+    }
 
+    public PerfilUsuario salvar(PerfilUsuario perfil) {
+        return perfilRepo.save(perfil);
+    }
 }

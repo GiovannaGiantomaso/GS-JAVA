@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Data
@@ -28,8 +27,6 @@ public class PerfilUsuario {
     @Column(name = "DATANASCIMENTO")
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "perfilUsuario", cascade = CascadeType.ALL)
-    private List<EnderecoUsuario> enderecos;
-
+    @OneToOne(mappedBy = "perfilUsuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private EnderecoUsuario endereco;
 }
-

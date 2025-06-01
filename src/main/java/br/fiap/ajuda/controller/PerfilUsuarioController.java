@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/usuarios")
@@ -19,22 +21,38 @@ public class PerfilUsuarioController {
     private final PerfilUsuarioService perfilUsuarioService;
 
     @GetMapping("/perfil")
-    public String exibirFormulario(Model model) {
-        model.addAttribute("perfilUsuario", new PerfilUsuarioFormDto());
+    public String exibirFormularioPerfil(Model model, @AuthenticationPrincipal OAuth2User oauthUser) {
+        String email = oauthUser.getAttribute("email");
+
+        Optional<PerfilUsuario> perfilExistente = perfilUsuarioService.buscarPorEmail(email);
+
+        PerfilUsuarioFormDto dto = new PerfilUsuarioFormDto();
+        perfilExistente.ifPresent(perfil -> {
+            dto.setNome(perfil.getNome());
+            dto.setEmail(perfil.getEmail());
+            dto.setTelefone(perfil.getTelefone());
+            dto.setDataNascimento(perfil.getDataNascimento());
+
+            if (perfil.getEndereco() != null) {
+                dto.setLogradouro(perfil.getEndereco().getLogradouro());
+                dto.setNumero(perfil.getEndereco().getNumero());
+                dto.setBairro(perfil.getEndereco().getBairro());
+                dto.setCidade(perfil.getEndereco().getCidade());
+                dto.setEstado(perfil.getEndereco().getEstado());
+                dto.setCep(perfil.getEndereco().getCep());
+            }
+        });
+
+        model.addAttribute("perfilUsuario", dto);
         return "usuarios/perfil-form";
     }
 
 
-    @PostMapping("/salvar")
+    @PostMapping("/perfil")
     public String salvarPerfil(@ModelAttribute("perfilUsuario") PerfilUsuarioFormDto dto,
-                               @AuthenticationPrincipal OAuth2User usuarioOauth,
-                               HttpSession session) {
-
-        PerfilUsuario perfil = perfilUsuarioService.salvarComEndereco(dto);
-
-        String emailGoogle = usuarioOauth.getAttribute("email");
-        session.setAttribute("usuarioEmail", emailGoogle);
-
+                               @AuthenticationPrincipal OAuth2User oauthUser) {
+        dto.setEmail(oauthUser.getAttribute("email"));
+        perfilUsuarioService.salvarComEndereco(dto);
         return "redirect:/principal?sucesso";
     }
 

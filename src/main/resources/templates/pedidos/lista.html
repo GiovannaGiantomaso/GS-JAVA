@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos de Ajuda</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f8f5;
+            padding: 30px;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4b7748;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #8fbf87;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f0f5f0;
+        }
+
+        .btn-voltar {
+            margin-top: 30px;
+            display: inline-block;
+            background-color: #888;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-voltar:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Pedidos de Ajuda Registrados</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tipo de Ajuda</th>
+        <th>Endereço</th>
+        <th>Crianças no Local</th>
+        <th>Pessoas</th>
+        <th>Situação de Risco</th>
+        <th>Data</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pedido : ${pedidos}">
+        <td th:text="${pedido.id}">1</td>
+        <td th:text="${pedido.tipoAjuda.nome}">Água</td>
+        <td>
+            <span th:if="${pedido.perfilUsuario.endereco != null}"
+                  th:text="${pedido.perfilUsuario.endereco.logradouro + ', ' +
+                           pedido.perfilUsuario.endereco.numero + ' - ' +
+                           pedido.perfilUsuario.endereco.bairro + ', ' +
+                           pedido.perfilUsuario.endereco.cidade + ' - ' +
+                           pedido.perfilUsuario.endereco.estado}">
+            Endereço completo
+            </span>
+            <span th:unless="${pedido.perfilUsuario.endereco != null}">Endereço não informado</span>
+        </td>
+        <td th:text="${pedido.criancasNoLocal == 'S' ? 'Sim' : 'Não'}">Sim</td>
+        <td th:text="${pedido.pessoasNoLocal}">4</td>
+        <td th:text="${pedido.situacaoDeRisco}">Descrição</td>
+        <td th:text="${#dates.format(pedido.dataCriacao, 'dd/MM/yyyy HH:mm')}">Data</td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/principal" class="btn-voltar">Voltar para a Página Principal</a>
+
+</body>
+</html>

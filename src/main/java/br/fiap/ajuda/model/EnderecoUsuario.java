@@ -14,7 +14,7 @@ public class EnderecoUsuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "PERFILUSUARIOID", nullable = false)
     private PerfilUsuario perfilUsuario;
 

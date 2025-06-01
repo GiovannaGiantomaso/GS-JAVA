@@ -17,4 +17,3 @@ public class PerfilUsuarioFormDto {
     private String estado;
     private String cep;
 }
-

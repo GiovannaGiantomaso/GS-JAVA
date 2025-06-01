@@ -20,4 +20,7 @@ public class TipoAjudaService {
     public TipoAjuda buscarPorId(Long id) {
         return repository.findById(id).orElseThrow();
     }
+    public TipoAjuda salvar(TipoAjuda tipoAjuda) {
+        return repository.save(tipoAjuda);
+    }
 }
