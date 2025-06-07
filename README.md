@@ -35,14 +35,14 @@ A plataforma permite aos usuários cadastrarem seus perfis e criarem pedidos de 
 
 
 ## 2. Navegue até o diretório do projeto:
-    ```
+
     cd ajuda
-    ```
+
 
 ## 3. Compile o projeto usando Maven:
-    ```
+
     mvn clean install
-    ```
+
 
 ## 4. Configure o banco de dados e a string de conexão no arquivo `application.properties`.
 
