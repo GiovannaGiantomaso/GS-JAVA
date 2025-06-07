@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="#{profile.title}">Cadastro de Perfil</title>
+    <title th:text="#{profile.update.title}">Atualizar Perfil</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -61,67 +61,68 @@
             background-color: #ffffff;
         }
 
-        .botoes {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
+.botoes {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
 
-        button, .botao-voltar {
-            margin-top: 20px;
-            padding: 12px;
-            background-color: #8fbf87;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-        .language-switcher {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
+button {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #8fbf87;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
 
-        .language-switcher a {
-            font-size: 24px;
-            margin-left: 12px;
-            color: #4b7748;
-            text-decoration: none;
-            transition: transform 0.2s ease, color 0.3s ease;
-        }
-        button:hover,
-        .botao-voltar:hover {
-            background-color: #7da878;
-        }
+button:hover {
+    background-color: #7da878;
+}
+
+.botao-voltar {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #e57373;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.botao-voltar:hover {
+    background-color: #d95454;
+}
+
     </style>
 </head>
 <body>
 
-<div class="language-switcher">
-    <a href="?lang=pt_BR" title="Português">🇧🇷</a>
-    <a href="?lang=en" title="English">🇺🇸</a>
-    <a href="?lang=es" title="Español">🇪🇸</a>
-</div>
-
 <div class="container">
-    <h2 th:text="#{profile.heading}">Complete seu Perfil</h2>
+    <h2 th:text="#{profile.update.heading}">Atualizar seu Perfil</h2>
 
-    <div th:if="${param.sucesso}" class="alerta-sucesso" th:text="#{profile.success}">
+    <div th:if="${param.sucesso}" class="alerta-sucesso" th:text="#{profile.update.success}">
         Perfil atualizado com sucesso!
     </div>
 
-    <form th:action="@{/usuarios/perfil}" th:object="${perfilUsuario}" method="post">
+    <form th:action="@{/usuarios/atualizar}" th:object="${perfilUsuario}" method="post">
 
         <label th:text="#{profile.name}">Nome:</label>
         <input type="text" th:field="*{nome}" required />
 
         <label th:text="#{profile.email}">Email:</label>
-        <input type="email" th:field="*{email}" required placeholder="O e-mail deve ser o mesmo do Google" />
+        <input type="email" th:field="*{email}" disabled />
 
         <label th:text="#{profile.phone}">Telefone:</label>
         <input type="text" th:field="*{telefone}" />
@@ -148,7 +149,7 @@
         <input type="text" th:field="*{cep}" required />
 
         <div class="botoes">
-            <button type="submit" th:text="#{profile.save}">Salvar Perfil</button>
+            <button type="submit" th:text="#{profile.save}">Salvar Atualização</button>
             <a th:href="@{/principal}" class="botao-voltar" th:text="#{profile.back}">Voltar</a>
         </div>
     </form>

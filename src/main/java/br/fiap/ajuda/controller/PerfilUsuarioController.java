@@ -56,4 +56,43 @@ public class PerfilUsuarioController {
         return "redirect:/principal?sucesso";
     }
 
+    @GetMapping("/atualizar")
+    public String exibirFormularioAtualizacao(Model model, @AuthenticationPrincipal OAuth2User oauthUser) {
+        String email = oauthUser.getAttribute("email");
+
+        Optional<PerfilUsuario> perfilExistente = perfilUsuarioService.buscarPorEmail(email);
+
+        if (perfilExistente.isPresent()) {
+            PerfilUsuario perfil = perfilExistente.get();
+            PerfilUsuarioFormDto dto = new PerfilUsuarioFormDto();
+
+            dto.setNome(perfil.getNome());
+            dto.setEmail(perfil.getEmail());
+            dto.setTelefone(perfil.getTelefone());
+            dto.setDataNascimento(perfil.getDataNascimento());
+
+            if (perfil.getEndereco() != null) {
+                dto.setLogradouro(perfil.getEndereco().getLogradouro());
+                dto.setNumero(perfil.getEndereco().getNumero());
+                dto.setBairro(perfil.getEndereco().getBairro());
+                dto.setCidade(perfil.getEndereco().getCidade());
+                dto.setEstado(perfil.getEndereco().getEstado());
+                dto.setCep(perfil.getEndereco().getCep());
+            }
+
+            model.addAttribute("perfilUsuario", dto);
+        }
+
+        return "usuarios/perfil-atualizar";
+    }
+
+    @PostMapping("/atualizar")
+    public String atualizarPerfil(@ModelAttribute("perfilUsuario") PerfilUsuarioFormDto dto,
+                                  @AuthenticationPrincipal OAuth2User oauthUser) {
+        dto.setEmail(oauthUser.getAttribute("email"));
+        perfilUsuarioService.salvarComEndereco(dto);
+        return "redirect:/principal?sucesso";
+    }
+
+
 }

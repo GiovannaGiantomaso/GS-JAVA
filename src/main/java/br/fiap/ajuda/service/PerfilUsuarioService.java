@@ -18,16 +18,33 @@ public class PerfilUsuarioService {
     private final EnderecoUsuarioRepository enderecoRepo;
 
     public PerfilUsuario salvarComEndereco(PerfilUsuarioFormDto dto) {
-        PerfilUsuario perfil = new PerfilUsuario();
-        perfil.setNome(dto.getNome());
-        perfil.setEmail(dto.getEmail());
-        perfil.setTelefone(dto.getTelefone());
-        perfil.setDataNascimento(dto.getDataNascimento());
+        Optional<PerfilUsuario> perfilExistente = perfilRepo.findByEmail(dto.getEmail());
+
+        PerfilUsuario perfil;
+        if (perfilExistente.isPresent()) {
+            perfil = perfilExistente.get();
+            perfil.setNome(dto.getNome());
+            perfil.setTelefone(dto.getTelefone());
+            perfil.setDataNascimento(dto.getDataNascimento());
+        } else {
+            perfil = new PerfilUsuario();
+            perfil.setNome(dto.getNome());
+            perfil.setEmail(dto.getEmail());
+            perfil.setTelefone(dto.getTelefone());
+            perfil.setDataNascimento(dto.getDataNascimento());
+        }
 
         perfil = perfilRepo.save(perfil);
 
-        EnderecoUsuario endereco = new EnderecoUsuario();
-        endereco.setPerfilUsuario(perfil);
+        EnderecoUsuario endereco;
+        if (perfil.getEndereco() != null) {
+            endereco = perfil.getEndereco();
+        } else {
+
+            endereco = new EnderecoUsuario();
+            endereco.setPerfilUsuario(perfil);
+        }
+
         endereco.setLogradouro(dto.getLogradouro());
         endereco.setNumero(dto.getNumero());
         endereco.setBairro(dto.getBairro());
@@ -39,6 +56,7 @@ public class PerfilUsuarioService {
 
         return perfil;
     }
+
 
     public Optional<PerfilUsuario> buscarPorEmail(String email) {
         return perfilRepo.findByEmail(email);

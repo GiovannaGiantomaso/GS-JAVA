@@ -58,7 +58,12 @@
             cursor: pointer;
         }
 
-        button:hover {
+        button:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+
+        button:hover:enabled {
             background-color: #7da878;
         }
 
@@ -66,12 +71,13 @@
             display: inline-block;
             margin-top: 20px;
             text-decoration: none;
-            background-color: #888;
+            background-color: #e57373;
             color: white;
             padding: 10px 15px;
             border-radius: 6px;
             text-align: center;
         }
+
         .language-switcher {
             position: absolute;
             top: 20px;
@@ -85,8 +91,15 @@
             text-decoration: none;
             transition: transform 0.2s ease, color 0.3s ease;
         }
+
         .btn-voltar:hover {
-            background-color: #666;
+            background-color: #d95454;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
         }
     </style>
 </head>
@@ -100,7 +113,7 @@
 <div class="container">
     <h2 th:text="#{pedido.title}">Solicitar Ajuda</h2>
 
-    <form th:action="@{/pedidos/salvar}" method="post" th:object="${pedidoAjuda}">
+    <form th:action="@{/pedidos/salvar}" method="post" th:object="${pedidoAjuda}" onsubmit="return validarFormulario()">
         <label th:text="#{pedido.tipoAjuda}">Tipo de Ajuda:</label>
         <select th:field="*{tipoAjuda.id}" required>
             <option value="" disabled selected th:text="#{pedido.selecione}">Selecione...</option>
@@ -120,10 +133,37 @@
         <label th:text="#{pedido.situacao}">Situação de Risco:</label>
         <textarea th:field="*{situacaoDeRisco}" rows="3" required></textarea>
 
-        <button type="submit" th:text="#{pedido.enviar}">Enviar Pedido</button>
+        <div class="error-message" id="error-message">PREENCHA TODOS OS CAMPOS</div>
+
+        <button type="submit" id="submit-button" disabled th:text="#{pedido.enviar}">Enviar Pedido</button>
     </form>
 
     <a href="/principal" class="btn-voltar" th:text="#{pedido.voltar}">Voltar para a Página Principal</a>
 </div>
+
+<script>
+    const form = document.querySelector("form");
+    const submitButton = document.getElementById("submit-button");
+    const errorMessage = document.getElementById("error-message");
+
+    form.addEventListener("input", () => {
+        const isFormValid = form.checkValidity();
+        submitButton.disabled = !isFormValid;
+
+        if (isFormValid) {
+            errorMessage.style.display = "none";
+        } else {
+            errorMessage.style.display = "block";
+        }
+    });
+
+    function validarFormulario() {
+        if (!form.checkValidity()) {
+            errorMessage.style.display = "block";
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>
