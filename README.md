@@ -1,4 +1,4 @@
-# Plataforma de Cadastro e Solicitação de Ajuda Comunitária
+# Plataforma de Cadastro e Solicitação de Ajuda Comunitária - SOS GR
 
 Este projeto visa criar uma plataforma digital para gerenciar solicitações de ajuda em situações de emergência, como desastres naturais. 
 A plataforma permite aos usuários cadastrarem seus perfis e criarem pedidos de ajuda e tipos de ajuda, facilitando a comunicação entre a população e as autoridades responsáveis.
