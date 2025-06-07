@@ -30,7 +30,7 @@ A plataforma permite aos usuários cadastrarem seus perfis e criarem pedidos de 
 ## Passos para Configuração
 
 ## 1. Clone o repositório:
-    ```
+    ```bash
     git clone https://github.com/GiovannaGiantomaso/GS-JAVA.git
     ```
 
