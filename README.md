@@ -106,10 +106,10 @@ spring.ai.openai.chat.completions-path=/chat/completions
 ### Desabilitar funções do Spring Cloud Function
 spring.cloud.function.enabled=false
 
-5. Execute o projeto:
-    ```
+### 5. Execute o projeto:
+ 
     mvn spring-boot:run
-    ```
+
 
 ## ROTAS DA APLICAÇÃO:
 - Rota inicial para login: http://localhost:8080/public/login
