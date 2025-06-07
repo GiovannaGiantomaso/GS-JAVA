@@ -31,6 +31,7 @@ Rebeca Silva Lopes|RM553764
 - **Banco de Dados**: Utilização de um banco de dados Oracle.
 - **RabbitMQ**: Para comunicação assíncrona entre os serviços.
 - **OpenAI GPT-4**: Para integração de IA na plataforma.
+- **Internacionalização (i18n)**: Suporte a múltiplos idiomas utilizando o Spring Boot e Thymeleaf para traduzir as mensagens da aplicação de acordo com o idioma do usuário.
   
 
 ## Requisitos
