@@ -31,7 +31,7 @@ Rebeca Silva Lopes|RM553764
 - **Banco de Dados**: Utilização de um banco de dados Oracle.
 - **RabbitMQ**: Para comunicação assíncrona entre os serviços.
 - **OpenAI GPT-4**: Para integração de IA na plataforma.
-- 
+  
 
 ## Requisitos
 
