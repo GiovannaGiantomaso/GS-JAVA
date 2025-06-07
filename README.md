@@ -3,6 +3,21 @@
 Este projeto visa criar uma plataforma digital para gerenciar solicitações de ajuda em situações de emergência, como desastres naturais. 
 A plataforma permite aos usuários cadastrarem seus perfis e criarem pedidos de ajuda e tipos de ajuda, facilitando a comunicação entre a população e as autoridades responsáveis.
 
+
+# INTEGRANTES:
+
+Giovanna Lima Giantomaso|RM553369
+
+Rebeca Silva Lopes|RM553764
+
+## LINK DO VÍDEO DEMOSNTRANDO O FUNCIONAMENTO DO PROJETO:
+
+...
+
+## LINK DO PITCH:
+
+...
+
 ## Tecnologias Utilizadas
 
 
