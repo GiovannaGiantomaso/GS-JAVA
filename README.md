@@ -229,4 +229,4 @@ Nome: Higiene
 
 Descrição: Necessitam de kits de limpeza pessoal
 
-Essas mensagens são úteis para rastreabilidade, auditoria e integração futura com outros sistemas ou microsserviços.
+**Essas mensagens são úteis para rastreabilidade, auditoria e integração futura com outros sistemas ou microsserviços.**
