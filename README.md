@@ -158,3 +158,13 @@ As mensagens são exibidas nas views Thymeleaf de forma dinâmica, sem necessida
 
 O projeto utiliza o RabbitMQ para realizar comunicação assíncrona entre os serviços da aplicação, enviando e processando mensagens nas operações de **criação**, **atualização** e **exclusão** de dados da entidade `Tipo de Ajuda`.
 
+### Acesso ao painel do RabbitMQ:
+
+- URL: http://localhost:15672  
+- Usuário: `guest`  
+- Senha: `guest`
+
+Ao acessar o painel, é possível:
+- Monitorar o tráfego nas filas
+- Ver mensagens pendentes ou consumidas
+- Ver como as exchanges estão roteando as mensagens para as filas corretas
