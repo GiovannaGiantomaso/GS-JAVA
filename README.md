@@ -231,9 +231,27 @@ Descrição: Necessitam de kits de limpeza pessoal
 
 **Essas mensagens são úteis para rastreabilidade, auditoria e integração futura com outros sistemas ou microsserviços.**
 
-## Integração com Spring AI
-- O usuário pode acessar a funcionalidade de IA solidária via rota /ai/form
+## IA Solidária com Spring AI + OpenAI
 
-- O sistema se comunica com a API GPT-4 e retorna respostas contextualizadas
+A aplicação conta com um recurso de **assistente virtual inteligente** desenvolvido com o **Spring AI**, que se conecta à **API GPT-4 da OpenAI**. Essa IA foi treinada para fornecer **orientações rápidas, humanizadas e contextualizadas** para situações de emergência, com foco em **ajuda comunitária**.
 
-- As mensagens são exibidas dinamicamente no chat
+### Acesso
+A funcionalidade pode ser acessada pela rota:  
+**http://localhost:8080/ai/form**
+
+### Funcionamento
+- O usuário digita uma dúvida ou situação relacionada à ajuda humanitária.
+- O sistema envia essa pergunta para o modelo GPT-4 usando a biblioteca `Spring AI`.
+- A IA processa e retorna uma resposta pronta em linguagem natural, exibida no chat da interface.
+
+### Exemplo de uso
+
+**Usuário:**  
+> O que fazer em caso de enchente na minha cidade?
+
+**Resposta da IA:**  
+> Em caso de enchente na sua cidade, é importante seguir algumas orientações para garantir a sua segurança e a de sua família. Aqui estão algumas medidas que você pode tomar: 1. **Acompanhe as informações**: Fique atento a boletins meteorológicos e avisos de autoridades locais sobre a situação das enchentes. 2. **Evacuação**: Se as autoridades recomendarem evacuação, faça isso imediatamente. Tenha um plano de fuga e saiba para onde ir. 3. **Prepare um kit de emergência**: Inclua itens essenciais como água, alimentos não perecíveis, medicamentos, lanternas, pilhas, documentos importantes, dinheiro e roupas. 4. **Desconecte eletrônicos**: Desligue e desconecte aparelhos eletrônicos e eletrodomésticos para evitar danos ou riscos de choque elétrico. 5. **Evite áreas de risco**: Não tente atravessar áreas alagadas, ruas inundadas ou pontes submersas. Mesmo uma pequena quantidade de água pode ser perigosa. 6. **Procure um local seguro**: Se você não puder evacuar, dirija-se a locais mais altos dentro da sua casa e evite o primeiro andar ou porões. 7. **Mantenha a calma**: Em situações de emergência, é fundamental manter a calma e seguir as orientações das autoridades. 8. **Ajude os outros se possível**: Se você estiver em uma posição segura e puder ajudar vizinhos ou pessoas em necessidade, faça isso, mas sempre priorizando a sua segurança. 9. **Após a enchente**: Quando a situação começar a se estabilizar, evite voltar para casa até que as autoridades declare que é seguro. Verifique os danos com cautela, evitando áreas alagadas e estruturas instáveis. 10. **Atenção à saúde**: Após a enchente, tenha cuidado com a água contaminada e com possíveis riscos de doenças. Lave as mãos frequentemente e evite consumir alimentos contaminados. Seguir essas orientações pode ajudar a minimizar os riscos e proteger você e sua família durante uma enchente.
+
+Esse recurso torna a plataforma mais acessível e empática, especialmente para pessoas em situação de vulnerabilidade que precisam de instruções rápidas.
+
+---
