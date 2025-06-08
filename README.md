@@ -107,7 +107,7 @@ spring.ai.openai.chat.completions-path=/chat/completions
 ### Desabilitar funções do Spring Cloud Function
 spring.cloud.function.enabled=false
 
-**Antes de iniciar a aplicação, certifique-se de que o RabbitMQ esteja instalado e em execução localmente.**
+## **Antes de iniciar a aplicação, certifique-se de que o RabbitMQ esteja instalado e em execução localmente.**
 
 #### Para garantir o funcionamento da mensageria com RabbitMQ:
 
