@@ -135,3 +135,26 @@ Verifique se o RabbitMQ está rodando:
 - Rota para acessar a página para o cadastro de pedido de ajuda: http://localhost:8080/pedidos/novo
 - Rota para acessar a página de atualizar o perfil do usuário: http://localhost:8080/usuarios/atualizar
 
+
+## Internacionalização (i18n)
+
+O projeto implementa suporte completo à **internacionalização** utilizando o recurso `messages.properties`, permitindo a tradução da interface e mensagens em diferentes idiomas.
+
+### Idiomas disponíveis:
+- 🇧🇷 Português (`messages_pt_BR.properties`)
+- 🇺🇸 Inglês (`messages_en.properties`)
+- 🇪🇸 Espanhol (`messages_es.properties`)
+
+### Funcionamento:
+A tradução é feita através da opção que o usuário escolher na interface.  
+As mensagens são exibidas nas views Thymeleaf de forma dinâmica, sem necessidade de alterações no código Java.
+
+### Exemplo de uso no HTML com Thymeleaf:
+```html
+<h1 th:text="#{msg_bem_vindo}">Bem-vindo</h1>
+```
+
+## Mensageria Assíncrona com RabbitMQ
+
+O projeto utiliza o RabbitMQ para realizar comunicação assíncrona entre os serviços da aplicação, enviando e processando mensagens nas operações de **criação**, **atualização** e **exclusão** de dados da entidade `Tipo de Ajuda`.
+
