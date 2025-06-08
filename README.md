@@ -230,3 +230,10 @@ Nome: Higiene
 Descrição: Necessitam de kits de limpeza pessoal
 
 **Essas mensagens são úteis para rastreabilidade, auditoria e integração futura com outros sistemas ou microsserviços.**
+
+## Integração com Spring AI
+- O usuário pode acessar a funcionalidade de IA solidária via rota /ai/form
+
+- O sistema se comunica com a API GPT-4 e retorna respostas contextualizadas
+
+- As mensagens são exibidas dinamicamente no chat
