@@ -216,19 +216,17 @@ Cada ação envia uma mensagem JSON para a fila apropriada. Os consumidores escu
 
 ID: 13
 
-Nome: TESTE TIPO AJUDA
+Nome: Resgate
 
-Descrição: Exemplo descrição de tipo de ajuda
-
-
+Descrição: Resgate de pessoas em áreas de risco
 
 
 **[TIPO AJUDA ATUALIZADO]** 
 
 ID: 13
 
-Nome: TESTE TIPO AJUDA
+Nome: Higiene
 
-Descrição: Exemplo descrição de tipo de ajuda novo
+Descrição: Necessitam de kits de limpeza pessoal
 
 Essas mensagens são úteis para rastreabilidade, auditoria e integração futura com outros sistemas ou microsserviços.
