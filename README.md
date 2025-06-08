@@ -212,7 +212,7 @@ Cada ação envia uma mensagem JSON para a fila apropriada. Os consumidores escu
 
 ### Exemplo de saída no console:
 
-[TIPO AJUDA CRIADO]
+**[TIPO AJUDA CRIADO]**
 
 ID: 13
 
@@ -222,7 +222,8 @@ Descrição: Exemplo descrição de tipo de ajuda
 
 
 
-[TIPO AJUDA ATUALIZADO]
+
+**[TIPO AJUDA ATUALIZADO]** 
 
 ID: 13
 
