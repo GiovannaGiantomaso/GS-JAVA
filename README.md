@@ -63,48 +63,75 @@ Rebeca Silva Lopes|RM553764
 ## 4. Configure o banco de dados e a string de conexão no arquivo `application.properties`.
 
 ### Configuração do nome da aplicação
+
 spring.application.name=ajuda
 
 ### Configuração do banco Oracle
+
 spring.datasource.url=jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl
+
 spring.datasource.username=rm553369
+
 spring.datasource.password=120505
+
 spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
 
 ### JPA / Hibernate
+
 spring.jpa.database-platform=org.hibernate.dialect.OracleDialect
+
 spring.jpa.hibernate.ddl-auto=none
+
 spring.jpa.show-sql=true
+
 spring.jpa.properties.hibernate.format_sql=true
 
 ### Thymeleaf
+
 spring.thymeleaf.cache=false
 
 ### Configuração de mensagens
+
 spring.messages.encoding=UTF-8
 
 ### OAuth2 (preencher os campos com as credenciais de OAuth2)
+
 spring.security.oauth2.client.registration.google.client-id=seu-client-id-aqui
+
 spring.security.oauth2.client.registration.google.client-secret=seu-client-secret-aqui
+
 spring.security.oauth2.client.registration.google.scope=openid,email,profile
+
 spring.security.oauth2.client.registration.google.redirect-uri={baseUrl}/login/oauth2/code/{registrationId}
+
 spring.security.oauth2.client.provider.google.authorization-uri=https://accounts.google.com/o/oauth2/auth
+
 spring.security.oauth2.client.provider.google.token-uri=https://oauth2.googleapis.com/token
+
 spring.security.oauth2.client.provider.google.user-info-uri=https://www.googleapis.com/oauth2/v3/userinfo
+
 
 ### Configuração do RabbitMQ
 spring.rabbitmq.host=localhost
+
 spring.rabbitmq.port=5672
+
 spring.rabbitmq.username=guest
+
 spring.rabbitmq.password=guest
 
 ### Configuração do OpenAI (preencher o token de API)
+
 spring.ai.openai.api-key=seu-token-aqui
+
 spring.ai.openai.chat.model=gpt-4
+
 spring.ai.openai.base-url=https://models.inference.ai.azure.com
+
 spring.ai.openai.chat.completions-path=/chat/completions
 
 ### Desabilitar funções do Spring Cloud Function
+
 spring.cloud.function.enabled=false
 
 ## **Antes de iniciar a aplicação, certifique-se de que o RabbitMQ esteja instalado e em execução localmente.**
