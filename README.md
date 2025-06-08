@@ -12,7 +12,7 @@ Rebeca Silva Lopes|RM553764
 
 ## LINK DO VÍDEO DEMOSNTRANDO O FUNCIONAMENTO DO PROJETO:
 
-...
+https://youtu.be/jGTX41dVKgg
 
 ## LINK DO PITCH:
 
