@@ -16,7 +16,7 @@ https://youtu.be/jGTX41dVKgg
 
 ## LINK DO PITCH:
 
-...
+https://youtu.be/nCu8ARG08Wo
 
 ## Tecnologias Utilizadas
 
