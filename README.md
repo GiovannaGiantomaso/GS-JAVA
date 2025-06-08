@@ -168,3 +168,10 @@ Ao acessar o painel, é possível:
 - Monitorar o tráfego nas filas
 - Ver mensagens pendentes ou consumidas
 - Ver como as exchanges estão roteando as mensagens para as filas corretas
+
+  ### Comportamento da mensageria:
+
+1. Uma entidade (Tipo de Ajuda) é criada, atualizada ou excluída via interface web.  
+2. O serviço correspondente envia um objeto JSON para a fila vinculada à operação.  
+3. O consumidor consome a mensagem da fila, processa e exibe os dados no console em tempo real.
+
