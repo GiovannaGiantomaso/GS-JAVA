@@ -175,3 +175,32 @@ Ao acessar o painel, é possível:
 2. O serviço correspondente envia um objeto JSON para a fila vinculada à operação.  
 3. O consumidor consome a mensagem da fila, processa e exibe os dados no console em tempo real.
 
+   #### Entidade `Tipo de Ajuda`:
+- `tipoajuda.create`: mensagens de tipoajuda recém-cadastrados  
+- `tipoajuda.update`: mensagens de tipoajuda atualizados  
+- `tipoajuda.delete`: mensagens de tipoajuda excluídos 
+
+
+Cada ação envia uma mensagem JSON para a fila apropriada. Os consumidores escutam essas filas e realizam o processamento adequado, exibindo os dados no console da aplicação.
+
+### Exemplo de saída no console:
+
+[TIPO AJUDA CRIADO]
+
+ID: 13
+
+Nome: TESTE TIPO AJUDA
+
+Descrição: Exemplo descrição de tipo de ajuda
+
+
+
+[TIPO AJUDA ATUALIZADO]
+
+ID: 13
+
+Nome: TESTE TIPO AJUDA
+
+Descrição: Exemplo descrição de tipo de ajuda novo
+
+Essas mensagens são úteis para rastreabilidade, auditoria e integração futura com outros sistemas ou microsserviços.
